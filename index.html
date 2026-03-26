@@ -216,7 +216,8 @@ const QUESTIONS = [
   opts:["A+B+C+D+E+F","C+D","A+B","G"],
   answer:1,
   explain:"When a total import ban (quota = 0) is imposed, the price rises from the world price to the domestic equilibrium. Area C+D transfers from consumers to domestic producers. Areas representing deadweight loss (like B and E area) are lost entirely — nobody gets them.",
-  catMsg:"Niko says: A quota is like when someone blocks the cat door — the inside cats win, but overall there's less happiness! 🐈"
+  catMsg:"Niko says: A quota is like when someone blocks the cat door — the inside cats win, but overall there's less happiness! 🐈",
+  hasGraph:"quota_trade"
 },
 {
   id:13, topic:"Trade",
@@ -224,7 +225,8 @@ const QUESTIONS = [
   opts:["Both U.S. and Mexican avocado prices increase, imports from Mexico decrease","U.S. avocado price decreases, imports from Mexico increase","Mexican avocado price decreases, imports increase","U.S. avocado price stays the same, no change in imports"],
   answer:0,
   explain:"A tariff raises the effective price of imports. ALL avocado prices rise (domestic and imported). At higher prices: domestic supply increases, domestic demand decreases, so imports FALL. Tariffs always reduce imports and raise prices.",
-  catMsg:"Pie says: Tariffs are like putting a toll on the cat flap — fewer visitors come through and everything costs more! 🐱"
+  catMsg:"Pie says: Tariffs are like putting a toll on the cat flap — fewer visitors come through and everything costs more! 🐱",
+  hasGraph:"tariff_avocado"
 },
 {
   id:14, topic:"Elasticity",
@@ -265,7 +267,8 @@ const QUESTIONS = [
   opts:["$50","$30","$20","$5"],
   answer:1,
   explain:"The quota raises the domestic price from $50 (world price) to $80 (where domestic S meets restricted D). The equivalent tariff = new price − world price = $80 − $50 = $30. A $30 tariff would restrict trade by exactly the same amount.",
-  catMsg:"Niko says: Quota price minus world price = the tariff twin! Simple math! 🐈"
+  catMsg:"Niko says: Quota price minus world price = the tariff twin! Simple math! 🐈",
+  hasGraph:"quota_supply_demand"
 },
 {
   id:19, topic:"Trade",
@@ -273,7 +276,8 @@ const QUESTIONS = [
   opts:["$6,400","$900","$6,000","$2,400"],
   answer:3,
   explain:"Quota rent = (P_quota − P_world) × quantity of imports under quota = ($80 − $50) × (150−120) = $30 × 80... The quota allows a specific quantity of imports, and importers earn the price difference on each unit. Quota rent = $2,400.",
-  catMsg:"Cookie says: Quota rent is the profit that goes to whoever holds the import licenses — free money! 🐱"
+  catMsg:"Cookie says: Quota rent is the profit that goes to whoever holds the import licenses — free money! 🐱",
+  hasGraph:"quota_supply_demand"
 },
 {
   id:20, topic:"Elasticity",
@@ -728,39 +732,227 @@ function drawGraphs() {
     </g>
   </svg>`;
 
-  // Q11 - Trade/Gains from Trade
+  // Q11 - Trade/Gains from Trade (1:1 from video frame_040/042)
   const g11 = document.getElementById('graph-11');
-  if (g11) g11.innerHTML = `<svg viewBox="0 0 380 280" style="width:100%;max-width:380px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
-    <rect width="380" height="280" fill="#fafafa" rx="8"/>
-    <!-- Axes -->
-    <line x1="50" y1="30" x2="50" y2="230" stroke="#000" stroke-width="1.5"/>
-    <line x1="50" y1="230" x2="340" y2="230" stroke="#000" stroke-width="1.5"/>
-    <text x="25" y="130" fill="#333" font-size="12" transform="rotate(-90,25,130)">Price</text>
-    <text x="190" y="260" fill="#333" font-size="12" text-anchor="middle">Quantity</text>
+  if (g11) g11.innerHTML = `<svg viewBox="0 0 400 310" style="width:100%;max-width:400px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="310" fill="#fafafa" rx="8"/>
+    <!-- Axes (thick, like video) -->
+    <line x1="55" y1="25" x2="55" y2="250" stroke="#000" stroke-width="2.5"/>
+    <line x1="55" y1="250" x2="360" y2="250" stroke="#000" stroke-width="2.5"/>
+    <text x="40" y="25" fill="#333" font-size="14" font-weight="bold">P</text>
+    <text x="360" y="268" fill="#333" font-size="14" font-weight="bold">Q</text>
 
-    <!-- Demand line (blue, downward sloping) -->
-    <line x1="60" y1="50" x2="330" y2="210" stroke="#1565c0" stroke-width="2.5"/>
-    <text x="335" y="210" fill="#1565c0" font-size="11" font-weight="bold">D</text>
+    <!-- Demand line (BLUE, downward sloping from top-left) -->
+    <line x1="55" y1="30" x2="350" y2="245" stroke="#1565c0" stroke-width="2.5"/>
 
-    <!-- Supply line (red, upward sloping) -->
-    <line x1="60" y1="200" x2="330" y2="60" stroke="#e53935" stroke-width="2.5"/>
-    <text x="335" y="60" fill="#e53935" font-size="11" font-weight="bold">S</text>
+    <!-- Supply line (RED, upward sloping from bottom-left) -->
+    <line x1="55" y1="235" x2="350" y2="30" stroke="#e53935" stroke-width="2.5"/>
 
-    <!-- World price line (green, horizontal) -->
-    <line x1="50" y1="150" x2="340" y2="150" stroke="#43a047" stroke-width="2.5"/>
-    <text x="345" y="155" fill="#43a047" font-size="11" font-weight="bold">P_world</text>
+    <!-- World price line (GREEN, horizontal) - below equilibrium -->
+    <line x1="55" y1="170" x2="370" y2="170" stroke="#43a047" stroke-width="2.5"/>
 
-    <!-- Equilibrium point (intersection of D and S) -->
-    <circle cx="195" cy="130" r="3" fill="#000"/>
+    <!-- Dashed vertical line at domestic supply meets world price -->
+    <line x1="145" y1="170" x2="145" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <!-- Dashed vertical at equilibrium -->
+    <line x1="200" y1="115" x2="200" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <!-- Dashed vertical at demand meets world price -->
+    <line x1="265" y1="170" x2="265" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
 
-    <!-- Labeled areas -->
-    <text x="110" y="80" fill="#f57c00" font-size="13" font-weight="bold">A</text>
-    <text x="150" y="70" fill="#f57c00" font-size="13" font-weight="bold">B</text>
-    <text x="120" y="120" fill="#f57c00" font-size="13" font-weight="bold">C</text>
-    <text x="170" y="115" fill="#f57c00" font-size="13" font-weight="bold">D</text>
-    <text x="240" y="160" fill="#f57c00" font-size="13" font-weight="bold">E</text>
-    <text x="280" y="185" fill="#f57c00" font-size="13" font-weight="bold">F</text>
+    <!-- Dashed horizontal at equilibrium price -->
+    <line x1="55" y1="115" x2="200" y2="115" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+
+    <!-- Area labels (matching video positions exactly) -->
+    <text x="125" y="100" fill="#000" font-size="15" font-weight="bold">A</text>
+    <text x="175" y="100" fill="#000" font-size="15" font-weight="bold">B</text>
+    <text x="115" y="150" fill="#000" font-size="15" font-weight="bold">C</text>
+    <text x="175" y="145" fill="#000" font-size="15" font-weight="bold">D</text>
+    <text x="215" y="165" fill="#000" font-size="15" font-weight="bold">E</text>
+    <text x="115" y="210" fill="#000" font-size="15" font-weight="bold">F</text>
   </svg>`;
+
+  // Q12 - Quota/Trade graph with S, D, Sw, areas A-G (from video frame_045)
+  const g12 = document.getElementById('graph-12');
+  if (g12) g12.innerHTML = `<svg viewBox="0 0 440 320" style="width:100%;max-width:440px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="440" height="320" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="55" y1="30" x2="55" y2="250" stroke="#000" stroke-width="1.5"/>
+    <line x1="55" y1="250" x2="410" y2="250" stroke="#000" stroke-width="1.5"/>
+    <text x="25" y="140" fill="#333" font-size="12" font-weight="bold" transform="rotate(-90,25,140)">P</text>
+    <text x="230" y="290" fill="#333" font-size="12" text-anchor="middle">Q</text>
+
+    <!-- Price labels on Y-axis -->
+    <text x="48" y="80" fill="#666" font-size="10" text-anchor="end">8</text>
+    <line x1="50" y1="78" x2="55" y2="78" stroke="#999" stroke-width="0.5"/>
+    <text x="48" y="145" fill="#666" font-size="10" text-anchor="end">5</text>
+    <line x1="50" y1="143" x2="55" y2="143" stroke="#999" stroke-width="0.5"/>
+
+    <!-- Supply line (upward sloping) -->
+    <line x1="70" y1="230" x2="360" y2="50" stroke="#000" stroke-width="2"/>
+    <text x="365" y="50" fill="#000" font-size="12" font-weight="bold">S</text>
+
+    <!-- Demand line (downward sloping) -->
+    <line x1="55" y1="50" x2="370" y2="240" stroke="#000" stroke-width="2"/>
+    <text x="375" y="240" fill="#000" font-size="12" font-weight="bold">D</text>
+
+    <!-- World supply price line Sw (horizontal at P=5) -->
+    <line x1="55" y1="143" x2="410" y2="143" stroke="#000" stroke-width="2"/>
+    <text x="400" y="138" fill="#000" font-size="11" font-weight="bold">S_w</text>
+
+    <!-- Domestic equilibrium intersection at approximately P=8 -->
+    <!-- S meets D at around x=200 -->
+
+    <!-- Dashed vertical lines for Q values -->
+    <line x1="135" y1="143" x2="135" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="210" y1="78" x2="210" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="300" y1="143" x2="300" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+
+    <!-- Dashed horizontal line at domestic equilibrium price -->
+    <line x1="55" y1="78" x2="210" y2="78" stroke="#999" stroke-width="0.5" stroke-dasharray="4"/>
+
+    <!-- Q labels on X-axis -->
+    <text x="135" y="268" fill="#666" font-size="9" text-anchor="middle">359,375</text>
+    <text x="210" y="268" fill="#666" font-size="9" text-anchor="middle">500,000</text>
+    <text x="300" y="268" fill="#666" font-size="9" text-anchor="middle">593,750</text>
+
+    <!-- Area labels A-G -->
+    <text x="130" y="105" fill="#333" font-size="14" font-weight="bold">A</text>
+    <text x="175" y="100" fill="#333" font-size="14" font-weight="bold">B</text>
+    <text x="115" y="135" fill="#333" font-size="14" font-weight="bold">C</text>
+    <text x="165" y="130" fill="#333" font-size="14" font-weight="bold">D</text>
+    <text x="220" y="135" fill="#333" font-size="14" font-weight="bold">E</text>
+    <text x="270" y="135" fill="#333" font-size="14" font-weight="bold">F</text>
+    <text x="120" y="195" fill="#333" font-size="14" font-weight="bold">G</text>
+  </svg>`;
+
+  // Q13 - Tariff on avocados graph (from video frame_048/055)
+  const g13 = document.getElementById('graph-13');
+  if (g13) g13.innerHTML = `<svg viewBox="0 0 440 340" style="width:100%;max-width:440px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="440" height="340" fill="#fafafa" rx="8"/>
+    <text x="220" y="22" fill="#333" font-size="11" font-weight="bold" text-anchor="middle">Domestic Supply and Demand with Tariff-Induced World Price Increase</text>
+    <!-- Axes -->
+    <line x1="65" y1="35" x2="65" y2="270" stroke="#000" stroke-width="1.5"/>
+    <line x1="65" y1="270" x2="400" y2="270" stroke="#000" stroke-width="1.5"/>
+    <text x="30" y="155" fill="#333" font-size="12" transform="rotate(-90,30,155)">Price</text>
+    <text x="230" y="300" fill="#333" font-size="12" text-anchor="middle">Quantity</text>
+
+    <!-- Y-axis price labels -->
+    <text x="58" y="42" fill="#666" font-size="9" text-anchor="end">30.0</text>
+    <text x="58" y="72" fill="#666" font-size="9" text-anchor="end">27.5</text>
+    <text x="58" y="102" fill="#666" font-size="9" text-anchor="end">25.0</text>
+    <text x="58" y="132" fill="#666" font-size="9" text-anchor="end">22.5</text>
+    <text x="58" y="162" fill="#666" font-size="9" text-anchor="end">20.0</text>
+    <text x="58" y="192" fill="#666" font-size="9" text-anchor="end">17.5</text>
+    <text x="58" y="222" fill="#666" font-size="9" text-anchor="end">15.0</text>
+    <text x="58" y="247" fill="#666" font-size="9" text-anchor="end">12.5</text>
+    <text x="58" y="270" fill="#666" font-size="9" text-anchor="end">10.0</text>
+
+    <!-- X-axis quantity labels -->
+    <text x="65" y="285" fill="#666" font-size="9">0</text>
+    <text x="107" y="285" fill="#666" font-size="9">1</text>
+    <text x="149" y="285" fill="#666" font-size="9">2</text>
+    <text x="191" y="285" fill="#666" font-size="9">3</text>
+    <text x="233" y="285" fill="#666" font-size="9">4</text>
+    <text x="275" y="285" fill="#666" font-size="9">5</text>
+    <text x="317" y="285" fill="#666" font-size="9">6</text>
+    <text x="359" y="285" fill="#666" font-size="9">7</text>
+    <text x="395" y="285" fill="#666" font-size="9">8</text>
+
+    <!-- Grid lines (light) -->
+    <line x1="65" y1="42" x2="400" y2="42" stroke="#eee" stroke-width="0.5"/>
+    <line x1="65" y1="102" x2="400" y2="102" stroke="#eee" stroke-width="0.5"/>
+    <line x1="65" y1="162" x2="400" y2="162" stroke="#eee" stroke-width="0.5"/>
+    <line x1="65" y1="222" x2="400" y2="222" stroke="#eee" stroke-width="0.5"/>
+    <line x1="65" y1="247" x2="400" y2="247" stroke="#eee" stroke-width="0.5"/>
+
+    <!-- Supply (Domestic) - red upward sloping from bottom-left to upper-right -->
+    <line x1="65" y1="270" x2="395" y2="38" stroke="#e53935" stroke-width="2.5"/>
+    <text x="345" y="75" fill="#e53935" font-size="10">Supply (Domestic)</text>
+
+    <!-- Demand (Domestic) - blue downward sloping from upper-left to bottom-right -->
+    <line x1="65" y1="38" x2="395" y2="270" stroke="#1565c0" stroke-width="2.5"/>
+    <text x="345" y="240" fill="#1565c0" font-size="10">Demand (Domestic)</text>
+
+    <!-- World Price Before Tariff - dashed red horizontal at ~$12.50 -->
+    <line x1="65" y1="247" x2="400" y2="247" stroke="#e53935" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="282" y="258" fill="#e53935" font-size="8">World Price (Before Tariff)</text>
+
+    <!-- World Price After Tariff - dashed blue horizontal at ~$15 -->
+    <line x1="65" y1="222" x2="400" y2="222" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="282" y="218" fill="#1565c0" font-size="8">World Price (After Tariff)</text>
+
+    <!-- Legend box -->
+    <rect x="250" y="100" width="145" height="65" fill="#fff" stroke="#ccc" stroke-width="0.5" rx="3"/>
+    <line x1="255" y1="113" x2="275" y2="113" stroke="#e53935" stroke-width="2"/>
+    <text x="280" y="117" fill="#333" font-size="8">Supply (Domestic)</text>
+    <line x1="255" y1="128" x2="275" y2="128" stroke="#1565c0" stroke-width="2"/>
+    <text x="280" y="132" fill="#333" font-size="8">Demand (Domestic)</text>
+    <line x1="255" y1="143" x2="275" y2="143" stroke="#e53935" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="280" y="147" fill="#333" font-size="8">World Price (Before Tariff)</text>
+    <line x1="255" y1="158" x2="275" y2="158" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <text x="280" y="162" fill="#333" font-size="8">World Price (After Tariff)</text>
+  </svg>`;
+
+  // Q18/Q19 - Quota graph with supply/demand, P_world=$50, quota between Q=120-150
+  const g18 = document.getElementById('graph-18');
+  if (g18) g18.innerHTML = `<svg viewBox="0 0 440 320" style="width:100%;max-width:440px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="440" height="320" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="65" y1="30" x2="65" y2="250" stroke="#000" stroke-width="1.5"/>
+    <line x1="65" y1="250" x2="400" y2="250" stroke="#000" stroke-width="1.5"/>
+    <text x="28" y="140" fill="#333" font-size="12" font-weight="bold" transform="rotate(-90,28,140)">Price</text>
+    <text x="250" y="295" fill="#333" font-size="12" text-anchor="middle">Quantity</text>
+
+    <!-- Price labels -->
+    <text x="58" y="55" fill="#666" font-size="10" text-anchor="end">$100</text>
+    <line x1="60" y1="52" x2="65" y2="52" stroke="#999" stroke-width="0.5"/>
+    <text x="58" y="115" fill="#666" font-size="10" text-anchor="end">$80</text>
+    <line x1="60" y1="112" x2="65" y2="112" stroke="#999" stroke-width="0.5"/>
+    <text x="58" y="178" fill="#666" font-size="10" text-anchor="end">$50</text>
+    <line x1="60" y1="175" x2="65" y2="175" stroke="#999" stroke-width="0.5"/>
+
+    <!-- Supply line (upward sloping from lower-left) -->
+    <line x1="75" y1="240" x2="370" y2="40" stroke="#000" stroke-width="2.5"/>
+    <text x="375" y="42" fill="#000" font-size="12" font-weight="bold">Supply</text>
+
+    <!-- Demand line (downward sloping from upper-left) -->
+    <line x1="65" y1="40" x2="380" y2="245" stroke="#000" stroke-width="2.5"/>
+    <text x="370" y="240" fill="#000" font-size="12" font-weight="bold">Demand</text>
+
+    <!-- P_World horizontal line at $50 -->
+    <line x1="65" y1="175" x2="400" y2="175" stroke="#666" stroke-width="2"/>
+    <text x="400" y="170" fill="#666" font-size="10" font-weight="bold">P_World</text>
+
+    <!-- Dashed horizontal at $80 -->
+    <line x1="65" y1="112" x2="250" y2="112" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+
+    <!-- Dashed vertical lines at Q=100, 120, 150, 200, 250 -->
+    <line x1="120" y1="175" x2="120" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="155" y1="112" x2="155" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="195" y1="112" x2="195" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="245" y1="175" x2="245" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="310" y1="175" x2="310" y2="250" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+
+    <!-- Hatched/shaded area between S and Pw line for quota zone -->
+    <line x1="155" y1="112" x2="155" y2="175" stroke="#999" stroke-width="0.5" stroke-dasharray="3"/>
+    <line x1="195" y1="112" x2="195" y2="175" stroke="#999" stroke-width="0.5" stroke-dasharray="3"/>
+
+    <!-- QUOTA bracket -->
+    <line x1="155" y1="210" x2="195" y2="210" stroke="#000" stroke-width="2"/>
+    <line x1="155" y1="205" x2="155" y2="215" stroke="#000" stroke-width="2"/>
+    <line x1="195" y1="205" x2="195" y2="215" stroke="#000" stroke-width="2"/>
+    <text x="175" y="228" fill="#000" font-size="11" font-weight="bold" text-anchor="middle">QUOTA</text>
+
+    <!-- Q labels -->
+    <text x="120" y="268" fill="#666" font-size="10" text-anchor="middle">100</text>
+    <text x="155" y="268" fill="#666" font-size="10" text-anchor="middle">120</text>
+    <text x="195" y="268" fill="#666" font-size="10" text-anchor="middle">150</text>
+    <text x="245" y="268" fill="#666" font-size="10" text-anchor="middle">200</text>
+    <text x="310" y="268" fill="#666" font-size="10" text-anchor="middle">250</text>
+  </svg>`;
+
+  // Q19 shares the same graph as Q18
+  const g19 = document.getElementById('graph-19');
+  if (g19) g19.innerHTML = g18 ? g18.innerHTML : '';
 
   // Q16 - Demand Elasticity Curves (4 numbered curves)
   const g16 = document.getElementById('graph-16');
@@ -794,85 +986,90 @@ function drawGraphs() {
     <text x="335" y="230" fill="#7b1fa2" font-size="13" font-weight="bold">4</text>
   </svg>`;
 
-  // Q22 - Total Revenue with labeled points A-H
+  // Q22 - Total Revenue with labeled points A-H (1:1 from video)
   const g22 = document.getElementById('graph-22');
-  if (g22) g22.innerHTML = `<svg viewBox="0 0 480 300" style="width:100%;max-width:480px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
-    <rect width="480" height="300" fill="#fafafa" rx="8"/>
+  if (g22) g22.innerHTML = `<svg viewBox="0 0 500 320" style="width:100%;max-width:500px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="500" height="320" fill="#fafafa" rx="8"/>
     <!-- Axes -->
-    <line x1="60" y1="40" x2="60" y2="240" stroke="#000" stroke-width="1.5"/>
-    <line x1="60" y1="240" x2="450" y2="240" stroke="#000" stroke-width="1.5"/>
-    <text x="25" y="140" fill="#333" font-size="12" transform="rotate(-90,25,140)">Total Revenue ($thousands)</text>
-    <text x="255" y="275" fill="#333" font-size="12" text-anchor="middle">Quantity (thousands)</text>
+    <line x1="70" y1="30" x2="70" y2="250" stroke="#000" stroke-width="1.5"/>
+    <line x1="70" y1="250" x2="460" y2="250" stroke="#000" stroke-width="1.5"/>
+    <text x="22" y="140" fill="#333" font-size="11" transform="rotate(-90,22,140)">Total Revenue (in thousands)</text>
+    <text x="265" y="290" fill="#333" font-size="11" text-anchor="middle">Quantity of Product X (in thousands)</text>
 
-    <!-- Y-axis scale: 0-10 in $thousands -->
-    <line x1="55" y1="240" x2="60" y2="240" stroke="#000" stroke-width="1"/>
-    <text x="40" y="245" fill="#666" font-size="10">0</text>
-    <line x1="55" y1="40" x2="60" y2="40" stroke="#000" stroke-width="1"/>
-    <text x="40" y="45" fill="#666" font-size="10">10</text>
+    <!-- Y-axis: $0 to $10 -->
+    <text x="60" y="255" fill="#666" font-size="9" text-anchor="end">0</text>
+    <text x="60" y="211" fill="#666" font-size="9" text-anchor="end">2</text>
+    <line x1="65" y1="208" x2="70" y2="208" stroke="#999" stroke-width="0.5"/>
+    <text x="60" y="167" fill="#666" font-size="9" text-anchor="end">4</text>
+    <line x1="65" y1="164" x2="70" y2="164" stroke="#999" stroke-width="0.5"/>
+    <text x="60" y="123" fill="#666" font-size="9" text-anchor="end">6</text>
+    <line x1="65" y1="120" x2="70" y2="120" stroke="#999" stroke-width="0.5"/>
+    <text x="60" y="79" fill="#666" font-size="9" text-anchor="end">8</text>
+    <line x1="65" y1="76" x2="70" y2="76" stroke="#999" stroke-width="0.5"/>
+    <text x="60" y="38" fill="#666" font-size="9" text-anchor="end">$10</text>
+    <line x1="65" y1="35" x2="70" y2="35" stroke="#999" stroke-width="0.5"/>
 
-    <!-- X-axis scale: 0-17 -->
-    <line x1="60" y1="240" x2="60" y2="245" stroke="#000" stroke-width="1"/>
-    <text x="55" y="260" fill="#666" font-size="10">0</text>
-    <line x1="450" y1="240" x2="450" y2="245" stroke="#000" stroke-width="1"/>
-    <text x="440" y="260" fill="#666" font-size="10">17</text>
+    <!-- X-axis: 0 to 17 (spaced at ~23px per unit) -->
+    <text x="70" y="265" fill="#666" font-size="9">0</text>
+    <text x="93" y="265" fill="#666" font-size="9">1</text>
+    <text x="116" y="265" fill="#666" font-size="9">2</text>
+    <text x="162" y="265" fill="#666" font-size="9">4</text>
+    <text x="254" y="265" fill="#666" font-size="9">8</text>
+    <text x="300" y="265" fill="#666" font-size="9">10</text>
+    <text x="393" y="265" fill="#666" font-size="9">14</text>
+    <text x="414" y="265" fill="#666" font-size="8">16</text>
+    <text x="436" y="265" fill="#666" font-size="8">17</text>
 
-    <!-- Grid lines -->
-    <line x1="60" y1="140" x2="450" y2="140" stroke="#eee" stroke-width="0.5"/>
-    <line x1="60" y1="40" x2="450" y2="40" stroke="#eee" stroke-width="0.5"/>
+    <!-- TR curve (smooth inverted parabola) -->
+    <path d="M 93 208 Q 120 170, 162 120 Q 210 60, 277 35 Q 330 60, 370 120 Q 410 170, 460 220" stroke="#000" stroke-width="2.5" fill="none"/>
 
-    <!-- TR curve (inverted U / hump shape) -->
-    <!-- Points: A(1,2), B(2,4), C(4,6), D(6,8), E(8,9.5), F(10,6), G(14,4), H(17,2) -->
-    <!-- Convert to SVG coords: x=60 + (q/17)*390, y=240 - (tr/10)*200 -->
-    <path d="M 83 200 L 106 160 L 152 80 L 198 80 L 245 30 L 292 80 L 385 160 L 449 200" stroke="#ad1457" stroke-width="2.5" fill="none"/>
+    <!-- Point A (Q=1, TR≈2) -->
+    <circle cx="93" cy="208" r="4" fill="#000"/>
+    <text x="82" y="203" fill="#000" font-size="12" font-weight="bold">A</text>
+    <line x1="93" y1="250" x2="93" y2="208" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="208" x2="93" y2="208" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- Points and labels -->
-    <!-- A (1, 2) -->
-    <circle cx="83" cy="200" r="3" fill="#ad1457"/>
-    <text x="75" y="215" fill="#ad1457" font-size="12" font-weight="bold">A</text>
-    <line x1="83" y1="240" x2="83" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="200" x2="83" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point B (Q=2, TR≈3.5) -->
+    <circle cx="116" cy="173" r="4" fill="#000"/>
+    <text x="105" y="168" fill="#000" font-size="12" font-weight="bold">B</text>
+    <line x1="116" y1="250" x2="116" y2="173" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="173" x2="116" y2="173" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- B (2, 4) -->
-    <circle cx="106" cy="160" r="3" fill="#ad1457"/>
-    <text x="98" y="175" fill="#ad1457" font-size="12" font-weight="bold">B</text>
-    <line x1="106" y1="240" x2="106" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="160" x2="106" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point C (Q=4, TR≈6) -->
+    <circle cx="162" cy="120" r="4" fill="#000"/>
+    <text x="151" y="115" fill="#000" font-size="12" font-weight="bold">C</text>
+    <line x1="162" y1="250" x2="162" y2="120" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="120" x2="162" y2="120" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- C (4, 6) -->
-    <circle cx="152" cy="80" r="3" fill="#ad1457"/>
-    <text x="144" y="95" fill="#ad1457" font-size="12" font-weight="bold">C</text>
-    <line x1="152" y1="240" x2="152" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="80" x2="152" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point D (Q=6, TR≈8) -->
+    <circle cx="208" cy="76" r="4" fill="#000"/>
+    <text x="197" y="71" fill="#000" font-size="12" font-weight="bold">D</text>
+    <line x1="208" y1="250" x2="208" y2="76" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="76" x2="208" y2="76" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- D (6, 8) -->
-    <circle cx="198" cy="80" r="3" fill="#ad1457"/>
-    <text x="190" y="95" fill="#ad1457" font-size="12" font-weight="bold">D</text>
-    <line x1="198" y1="240" x2="198" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="80" x2="198" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point E (Q=8, TR≈9.5) - peak area -->
+    <circle cx="254" cy="38" r="4" fill="#000"/>
+    <text x="258" y="33" fill="#000" font-size="12" font-weight="bold">E</text>
+    <line x1="254" y1="250" x2="254" y2="38" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="38" x2="254" y2="38" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- E (8, 9.5) - near peak -->
-    <circle cx="245" cy="30" r="3" fill="#ad1457"/>
-    <text x="237" y="20" fill="#ad1457" font-size="12" font-weight="bold">E</text>
-    <line x1="245" y1="240" x2="245" y2="30" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="30" x2="245" y2="30" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point F (Q=10, TR≈6) -->
+    <circle cx="300" cy="120" r="4" fill="#000"/>
+    <text x="306" y="115" fill="#000" font-size="12" font-weight="bold">F</text>
+    <line x1="300" y1="250" x2="300" y2="120" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="120" x2="300" y2="120" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- F (10, 6) -->
-    <circle cx="292" cy="80" r="3" fill="#ad1457"/>
-    <text x="284" y="95" fill="#ad1457" font-size="12" font-weight="bold">F</text>
-    <line x1="292" y1="240" x2="292" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="80" x2="292" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point G (Q=14, TR≈4) -->
+    <circle cx="393" cy="164" r="4" fill="#000"/>
+    <text x="399" y="159" fill="#000" font-size="12" font-weight="bold">G</text>
+    <line x1="393" y1="250" x2="393" y2="164" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="164" x2="393" y2="164" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
 
-    <!-- G (14, 4) -->
-    <circle cx="385" cy="160" r="3" fill="#ad1457"/>
-    <text x="377" y="175" fill="#ad1457" font-size="12" font-weight="bold">G</text>
-    <line x1="385" y1="240" x2="385" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="160" x2="385" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-
-    <!-- H (17, 2) -->
-    <circle cx="449" cy="200" r="3" fill="#ad1457"/>
-    <text x="441" y="215" fill="#ad1457" font-size="12" font-weight="bold">H</text>
-    <line x1="449" y1="240" x2="449" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
-    <line x1="60" y1="200" x2="449" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <!-- Point H (Q=17, TR≈2) -->
+    <circle cx="460" cy="208" r="4" fill="#000"/>
+    <text x="448" y="225" fill="#000" font-size="12" font-weight="bold">H</text>
+    <line x1="460" y1="250" x2="460" y2="208" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
+    <line x1="70" y1="208" x2="460" y2="208" stroke="#999" stroke-width="0.7" stroke-dasharray="3"/>
   </svg>`;
 
   // Q30 - ATC curves (4 industries, left to right, all U-shaped)
@@ -952,9 +1149,8 @@ function drawGraphs() {
     <line x1="180" y1="230" x2="180" y2="25" stroke="#999" stroke-width="1" stroke-dasharray="3"/>
     <text x="173" y="250" fill="#999" font-size="11" font-weight="bold">Q1</text>
 
-    <!-- TVC area shading (rectangle from origin to Q1, B level) -->
-    <rect x="60" y="115" width="120" height="115" fill="rgba(173,20,87,0.08)" stroke="none"/>
-    <text x="95" y="175" fill="#ad1457" font-size="9" font-weight="bold">TVC = 0BEQ1</text>
+    <!-- 0 label at origin -->
+    <text x="55" y="245" fill="#333" font-size="11" font-weight="bold">0</text>
   </svg>`;
 }
 
