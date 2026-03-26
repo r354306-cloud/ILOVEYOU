@@ -98,11 +98,11 @@
 
 <div class="header">
   <h1>Cecelia's Econ Review Quiz</h1>
-  <p class="subtitle">You've got this! Pie Cookie and Niko believe in you.</p>
+  <p class="subtitle">You've got this! Pie, Cookie, and Niko believe in you.</p>
   <div class="cat-row">
-    <span title="Pie Cookie">🐱</span>
+    <span title="Pie">🐱</span>
+    <span title="Cookie">🐱</span>
     <span title="Niko">🐈</span>
-    <span>📚</span>
   </div>
 </div>
 
@@ -113,7 +113,6 @@
 
 <div class="container" id="quizArea"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 // ── ALL 35 QUESTIONS ──
 const QUESTIONS = [
@@ -123,7 +122,7 @@ const QUESTIONS = [
   opts:["Quantity demanded for good X increases by 20%","Quantity demanded for good X decreases by 10%","Quantity demanded for good X decreases by 20%","Quantity demanded for good X increases by 10%"],
   answer:0,
   explain:"Cross-price elasticity = %ΔQd_X / %ΔP_Y. So %ΔQd_X = 2 × 10% = 20% increase. Positive cross-price elasticity means X and Y are substitutes — when Y gets pricier, people switch to X!",
-  catMsg:"Pie Cookie says: Think of it like treats — if one brand gets expensive, you switch to the other! 🐱"
+  catMsg:"Pie says: Think of it like treats — if one brand gets expensive, you switch to the other! 🐱"
 },
 {
   id:2, topic:"Elasticity",
@@ -141,7 +140,7 @@ const QUESTIONS = [
   opts:["-1","0","8","4"],
   answer:1,
   explain:"MU = change in TU. Working through: TU(1)=5, TU(2)=5+2=7, TU(3)=7+1=8. So MU(4) = TU(4)−TU(3) = 8−8 = 0. The 4th hotdog is the satiation point — total utility is maximized and eating one more adds nothing!",
-  catMsg:"Pie Cookie says: Even I stop eating after the perfect amount of treats... okay, that's not true. But John should! 🐱"
+  catMsg:"Cookie says: Even I stop eating after the perfect amount of treats... okay, that's not true. But John should! 🐱"
 },
 {
   id:4, topic:"Utility",
@@ -158,7 +157,7 @@ const QUESTIONS = [
   opts:["less than $2","exactly $2","more than $2","zero"],
   answer:0,
   explain:"A utility maximizer keeps buying as long as MU ≥ Price. He bought 3 but NOT 4, meaning: MU of the 3rd sundae ≥ $2, but MU of the 4th sundae < $2. It's still positive (he'd enjoy it a little), but not worth the $2 price.",
-  catMsg:"Pie Cookie says: I would definitely eat the 4th sundae. But I'm a cat and I don't pay for things. 🐱"
+  catMsg:"Pie says: I would definitely eat the 4th sundae. But I'm a cat and I don't pay for things. 🐱"
 },
 {
   id:6, topic:"Utility",
@@ -175,7 +174,7 @@ const QUESTIONS = [
   opts:["Emily will buy more Books and fewer Movies","Emily will buy the same amount of both","Emily will buy fewer Books and more Movies","Emily will buy fewer Movies and keep the same number of Books"],
   answer:2,
   explain:"When Books get more expensive, MU_Books/P_Books falls below MU_Movies/P_Movies. Emily shifts spending toward Movies (better value) and away from Books. This is the substitution effect in action!",
-  catMsg:"Pie Cookie says: When the fancy cat food gets expensive, even I switch to the regular stuff. Smart shopping! 🐱"
+  catMsg:"Cookie says: When the fancy cat food gets expensive, even I switch to the regular stuff. Smart shopping! 🐱"
 },
 {
   id:8, topic:"Trade",
@@ -192,7 +191,7 @@ const QUESTIONS = [
   opts:["1/4 Tablets per Smart Phone","1/2 Tablets per Smart Phone","1 Smart Phone per Tablet","3/4 Smart Phones per Tablet"],
   answer:1,
   explain:"US opp cost: 1 Tablet = 20/15 = 4/3 SP → US has comparative advantage in Tablets. For trade to work, terms must be between each country's opp costs. For SP: between 1/3 and 3/4 Tablets per SP. 1/2 falls in this range and gives the US the best deal!",
-  catMsg:"Pie Cookie says: Trade is like sharing — I bring you a mouse, you give me treats. Everyone wins! 🐱"
+  catMsg:"Pie says: Trade is like sharing — I bring you a mouse, you give me treats. Everyone wins! 🐱"
 },
 {
   id:10, topic:"Trade",
@@ -208,7 +207,8 @@ const QUESTIONS = [
   opts:["E","F−E","C+D+E+F","A+B"],
   answer:0,
   explain:"When the world price is below the domestic equilibrium price, consumers benefit from cheaper imports. The net gain from trade is area E — the triangle representing additional consumer surplus that wasn't available under autarky (no trade).",
-  catMsg:"Pie Cookie says: Free trade is like when both cats get to share the sunny spot — more happiness for everyone! 🐱"
+  catMsg:"Cookie says: Free trade is like when both cats get to share the sunny spot — more happiness for everyone! 🐱",
+  hasGraph:"trade_gains"
 },
 {
   id:12, topic:"Trade",
@@ -224,7 +224,7 @@ const QUESTIONS = [
   opts:["Both U.S. and Mexican avocado prices increase, imports from Mexico decrease","U.S. avocado price decreases, imports from Mexico increase","Mexican avocado price decreases, imports increase","U.S. avocado price stays the same, no change in imports"],
   answer:0,
   explain:"A tariff raises the effective price of imports. ALL avocado prices rise (domestic and imported). At higher prices: domestic supply increases, domestic demand decreases, so imports FALL. Tariffs always reduce imports and raise prices.",
-  catMsg:"Pie Cookie says: Tariffs are like putting a toll on the cat flap — fewer visitors come through and everything costs more! 🐱"
+  catMsg:"Pie says: Tariffs are like putting a toll on the cat flap — fewer visitors come through and everything costs more! 🐱"
 },
 {
   id:14, topic:"Elasticity",
@@ -240,7 +240,7 @@ const QUESTIONS = [
   opts:["-0.5, inferior, a necessity","5, normal, a necessity","-2.0, normal, neither a luxury nor a necessity","0, inferior, a luxury"],
   answer:0,
   explain:"Income Elasticity = %ΔQd/%ΔIncome = −5%/10% = −0.5. NEGATIVE means it's an INFERIOR good (demand falls when income rises). Since |−0.5| < 1, it's a necessity. Think: cheap ramen — you buy less when you get richer, but it's still a staple.",
-  catMsg:"Pie Cookie says: Negative = inferior good. Positive < 1 = normal necessity. Positive > 1 = luxury. Write that on your hand! 🐱"
+  catMsg:"Cookie says: Negative = inferior good. Positive < 1 = normal necessity. Positive > 1 = luxury. Write that on your hand! 🐱"
 },
 {
   id:16, topic:"Elasticity",
@@ -257,7 +257,7 @@ const QUESTIONS = [
   opts:["If demand were less elastic, the tax revenue would be smaller","If supply were less elastic, the tax revenue would be larger","If supply were less elastic, the deadweight loss would be larger","If demand were more elastic, the tax revenue would be larger"],
   answer:1,
   explain:"Less elastic supply = more vertical curve = the tax causes LESS reduction in quantity traded. So: more units still traded = LARGER tax revenue and SMALLER deadweight loss. Inelastic curves = bigger revenue rectangle, smaller DWL triangle.",
-  catMsg:"Pie Cookie says: Inelastic = people (or cats) won't budge much, so the government collects more tax! 🐱"
+  catMsg:"Pie says: Inelastic = people (or cats) won't budge much, so the government collects more tax! 🐱"
 },
 {
   id:18, topic:"Trade",
@@ -273,7 +273,7 @@ const QUESTIONS = [
   opts:["$6,400","$900","$6,000","$2,400"],
   answer:3,
   explain:"Quota rent = (P_quota − P_world) × quantity of imports under quota = ($80 − $50) × (150−120) = $30 × 80... The quota allows a specific quantity of imports, and importers earn the price difference on each unit. Quota rent = $2,400.",
-  catMsg:"Pie Cookie says: Quota rent is the profit that goes to whoever holds the import licenses — free money! 🐱"
+  catMsg:"Cookie says: Quota rent is the profit that goes to whoever holds the import licenses — free money! 🐱"
 },
 {
   id:20, topic:"Elasticity",
@@ -289,7 +289,7 @@ const QUESTIONS = [
   opts:["Increases, substitutes","Increases, complements","Decreases, substitutes","Decreases, complements"],
   answer:0,
   explain:"Cross-price elasticity is POSITIVE (+0.5) → the goods are SUBSTITUTES. When B gets more expensive, people switch TO A, so demand for A INCREASES. If they were complements (used together), cross-price elasticity would be NEGATIVE.",
-  catMsg:"Pie Cookie says: POSITIVE cross elasticity = SUBSTITUTES (they replace each other). NEGATIVE = COMPLEMENTS (they go together, like me and Niko... sometimes). 🐱"
+  catMsg:"Pie says: POSITIVE cross elasticity = SUBSTITUTES (they replace each other). NEGATIVE = COMPLEMENTS (they go together, like me and Niko... sometimes). 🐱"
 },
 {
   id:22, topic:"Elasticity",
@@ -306,7 +306,7 @@ const QUESTIONS = [
   opts:["Both A. and B.","The responsiveness of quantity demanded to changes in price","The slope of the demand curve","How frequently the market price of a good changes"],
   answer:1,
   explain:"PED measures how SENSITIVE consumers are to price changes — specifically, the percentage change in quantity demanded for a 1% change in price. It is NOT the same as slope (elasticity varies along a straight-line demand curve).",
-  catMsg:"Pie Cookie says: Elasticity = responsiveness. How much do buyers react when price changes? That's it! 🐱"
+  catMsg:"Cookie says: Elasticity = responsiveness. How much do buyers react when price changes? That's it! 🐱"
 },
 {
   id:24, topic:"Costs",
@@ -322,7 +322,7 @@ const QUESTIONS = [
   opts:["marginal utility of each good is maximized","marginal utility per dollar spent is the same for all goods","total utility is the same for each good","marginal utility per dollar spent is maximized for each good"],
   answer:1,
   explain:"The utility maximization rule: MU_A/P_A = MU_B/P_B = ... for ALL goods. You allocate spending so the LAST dollar spent on each good gives you EQUAL satisfaction. This is called the equimarginal principle.",
-  catMsg:"Pie Cookie says: Equal MU per dollar for everything! That's the golden rule of shopping! 🐱"
+  catMsg:"Pie says: Equal MU per dollar for everything! That's the golden rule of shopping! 🐱"
 },
 {
   id:26, topic:"Utility",
@@ -339,7 +339,7 @@ const QUESTIONS = [
   opts:["(3, 2, 2.5, 8, 2)","(3, 2, 2, 6, 0)","(3, 2, 2.5, 6, 0)","(4, 1, 2.5, 8, 6)"],
   answer:2,
   explain:"x: TP(1) = 0 + MP(1) = 0+3 = 3. y: MP(2) = TP(2)−TP(1) = 5−3 = 2. z: AP(2) = TP(2)/2 = 5/2 = 2.5. m: TP(4) = AP(4)×4 = 1.5×4 = 6. n: MP(4) = TP(4)−TP(3) = 6−6 = 0. Answer: (3, 2, 2.5, 6, 0).",
-  catMsg:"Pie Cookie says: MP = change in TP. AP = TP divided by labor. Keep those formulas close! 🐱"
+  catMsg:"Cookie says: MP = change in TP. AP = TP divided by labor. Keep those formulas close! 🐱"
 },
 {
   id:28, topic:"Costs",
@@ -356,7 +356,7 @@ const QUESTIONS = [
   opts:["100 / 100 / 140","0 / 190 / 100","100 / 100 / 100","0 / 190 / 140"],
   answer:3,
   explain:"TC = TFC + TVC, always! Blank 1: TVC(0) = TC−TFC = 100−100 = 0 (no output = no variable costs). Blank 2: TC(3) = TFC+TVC = 100+90 = 190. Blank 3: TVC(4) = TC−TFC = 240−100 = 140.",
-  catMsg:"Pie Cookie says: TC = TFC + TVC. That's the whole formula. Write it down three times! 🐱"
+  catMsg:"Pie says: TC = TFC + TVC. That's the whole formula. Write it down three times! 🐱"
 },
 {
   id:30, topic:"Costs",
@@ -373,7 +373,7 @@ const QUESTIONS = [
   opts:["Increasing, decreasing","Decreasing, increasing","Increasing, increasing","Decreasing, decreasing"],
   answer:1,
   explain:"Economies of scale = LRATC is DECREASING (getting cheaper per unit as you grow bigger). Diseconomies of scale = LRATC is INCREASING (getting MORE expensive per unit — the firm is too big to manage efficiently).",
-  catMsg:"Pie Cookie says: Economies = costs going DOWN (yay, growing is good!). Diseconomies = costs going UP (too big, too chaotic — like when all the cats try to fit in one box). 🐱"
+  catMsg:"Cookie says: Economies = costs going DOWN (yay, growing is good!). Diseconomies = costs going UP (too big, too chaotic — like when all the cats try to fit in one box). 🐱"
 },
 {
   id:32, topic:"Costs",
@@ -389,7 +389,7 @@ const QUESTIONS = [
   opts:["total cost","total fixed cost","total variable cost","average variable cost"],
   answer:2,
   explain:"B is at the AVC level at Q1. The rectangle 0BEQ1 has height = AVC and width = Q1. Since TVC = AVC × Q, this area = Total Variable Cost. (Total cost would be the larger rectangle using ATC on the y-axis.)",
-  catMsg:"Pie Cookie says: AVC × Q = TVC. ATC × Q = TC. AFC × Q = TFC. Areas are just price × quantity rectangles! 🐱",
+  catMsg:"Pie says: AVC × Q = TVC. ATC × Q = TC. AFC × Q = TFC. Areas are just price × quantity rectangles! 🐱",
   hasGraph:"cost_curves"
 },
 {
@@ -407,7 +407,7 @@ const QUESTIONS = [
   opts:["$0.03","$25,000","$25","$40"],
   answer:1,
   explain:"AFC = ATC − AVC = $100 − $75 = $25. TFC = AFC × Q = $25 × 1,000 = $25,000. Remember: fixed costs DON'T change with output — they're the same whether you produce 1 unit or 1,000.",
-  catMsg:"Pie Cookie says: ATC minus AVC gives you AFC. Multiply by quantity for TOTAL fixed cost. Simple! 🐱"
+  catMsg:"Cookie says: ATC minus AVC gives you AFC. Multiply by quantity for TOTAL fixed cost. Simple! 🐱"
 }
 ];
 
@@ -557,11 +557,11 @@ function submitQuiz() {
   // Show results banner
   const pct = Math.round((correct/35)*100);
   let grade, celebration;
-  if (pct >= 90) { grade = "Pie Cookie and Niko are SO proud of you! You're crushing it!"; celebration = "🐱🎉🐈✨🌟"; }
-  else if (pct >= 80) { grade = "Great job, Cecelia! Almost perfect — just a few to review!"; celebration = "🐱👏🐈💪"; }
-  else if (pct >= 70) { grade = "Solid work! Review the red ones below and you'll ace the real test!"; celebration = "🐱📖🐈💡"; }
-  else if (pct >= 60) { grade = "Good start! The cats believe in you — focus on the explanations below!"; celebration = "🐱❤️🐈📚"; }
-  else { grade = "Don't worry! Every wrong answer is a learning moment. Pie Cookie and Niko are here to help!"; celebration = "🐱🤗🐈💕"; }
+  if (pct >= 90) { grade = "Pie, Cookie, and Niko are SO proud of you! You're crushing it!"; celebration = "🐱🎉🐱✨🐈🌟"; }
+  else if (pct >= 80) { grade = "Great job, Cecelia! Almost perfect — just a few to review!"; celebration = "🐱👏🐱💪🐈"; }
+  else if (pct >= 70) { grade = "Solid work! Review the red ones below and you'll ace the real test!"; celebration = "🐱📖🐱💡🐈"; }
+  else if (pct >= 60) { grade = "Good start! Pie, Cookie, and Niko believe in you — focus on the explanations below!"; celebration = "🐱❤️🐱📚🐈"; }
+  else { grade = "Don't worry! Every wrong answer is a learning moment. Pie, Cookie, and Niko are here to help!"; celebration = "🐱🤗🐱💕🐈"; }
 
   const banner = document.getElementById('resultsBanner');
   banner.classList.add('show');
@@ -589,126 +589,372 @@ function submitQuiz() {
 
 // ── DRAW GRAPHS ──
 function drawGraphs() {
-  // Q2 - Supply elasticity
+  // Q2 - Supply elasticity (4 options A, B, C, D in 2x2 grid)
   const g2 = document.getElementById('graph-2');
-  if (g2) g2.innerHTML = `<svg viewBox="0 0 320 200" style="width:100%;max-width:360px;display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-    <rect width="320" height="200" fill="#fafafa" rx="8"/>
-    <line x1="40" y1="15" x2="40" y2="175" stroke="#999" stroke-width="1.5"/>
-    <line x1="40" y1="175" x2="300" y2="175" stroke="#999" stroke-width="1.5"/>
-    <text x="18" y="100" fill="#666" font-size="13" transform="rotate(-90,18,100)">P</text>
-    <text x="280" y="195" fill="#666" font-size="13">Q</text>
-    <line x1="70" y1="165" x2="180" y2="25" stroke="#e53935" stroke-width="2.5"/>
-    <text x="182" y="22" fill="#e53935" font-size="11" font-weight="bold">S_SR (steep)</text>
-    <line x1="55" y1="140" x2="280" y2="50" stroke="#43a047" stroke-width="2.5"/>
-    <text x="240" y="44" fill="#43a047" font-size="11" font-weight="bold">S_LR (flat)</text>
+  if (g2) g2.innerHTML = `<svg viewBox="0 0 620 420" style="width:100%;max-width:620px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <!-- Graph A (CORRECT): S_SR steep, S_LR flat -->
+    <g id="graphA">
+      <rect x="10" y="10" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="40" y1="25" x2="40" y2="175" stroke="#999" stroke-width="1"/>
+      <line x1="40" y1="175" x2="290" y2="175" stroke="#999" stroke-width="1"/>
+      <text x="20" y="100" fill="#666" font-size="11" transform="rotate(-90,20,100)">P</text>
+      <text x="160" y="195" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- S_SR steep (red) -->
+      <line x1="60" y1="165" x2="150" y2="45" stroke="#e53935" stroke-width="2.5"/>
+      <text x="155" y="42" fill="#e53935" font-size="10" font-weight="bold">S_SR</text>
+      <!-- S_LR flat (green) -->
+      <line x1="55" y1="130" x2="280" y2="70" stroke="#43a047" stroke-width="2.5"/>
+      <text x="240" y="65" fill="#43a047" font-size="10" font-weight="bold">S_LR</text>
+      <text x="160" y="210" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">A (CORRECT)</text>
+    </g>
+
+    <!-- Graph B: S_LR steep, S_SR flat (opposite) -->
+    <g id="graphB">
+      <rect x="320" y="10" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="350" y1="25" x2="350" y2="175" stroke="#999" stroke-width="1"/>
+      <line x1="350" y1="175" x2="600" y2="175" stroke="#999" stroke-width="1"/>
+      <text x="330" y="100" fill="#666" font-size="11" transform="rotate(-90,330,100)">P</text>
+      <text x="470" y="195" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- S_LR steep (red) -->
+      <line x1="370" y1="165" x2="460" y2="45" stroke="#e53935" stroke-width="2.5"/>
+      <text x="465" y="42" fill="#e53935" font-size="10" font-weight="bold">S_LR</text>
+      <!-- S_SR flat (green) -->
+      <line x1="365" y1="130" x2="590" y2="70" stroke="#43a047" stroke-width="2.5"/>
+      <text x="550" y="65" fill="#43a047" font-size="10" font-weight="bold">S_SR</text>
+      <text x="470" y="210" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">B</text>
+    </g>
+
+    <!-- Graph C: S_LR vertical, S_SR steep upward -->
+    <g id="graphC">
+      <rect x="10" y="220" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="40" y1="235" x2="40" y2="385" stroke="#999" stroke-width="1"/>
+      <line x1="40" y1="385" x2="290" y2="385" stroke="#999" stroke-width="1"/>
+      <text x="20" y="310" fill="#666" font-size="11" transform="rotate(-90,20,310)">P</text>
+      <text x="160" y="405" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- S_LR vertical (red) -->
+      <line x1="150" y1="245" x2="150" y2="375" stroke="#e53935" stroke-width="2.5"/>
+      <text x="155" y="252" fill="#e53935" font-size="10" font-weight="bold">S_LR</text>
+      <!-- S_SR steep upward (green) -->
+      <line x1="70" y1="375" x2="200" y2="255" stroke="#43a047" stroke-width="2.5"/>
+      <text x="205" y="252" fill="#43a047" font-size="10" font-weight="bold">S_SR</text>
+      <text x="160" y="420" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">C</text>
+    </g>
+
+    <!-- Graph D: S_SR = S_LR (single line, moderately upward) -->
+    <g id="graphD">
+      <rect x="320" y="220" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="350" y1="235" x2="350" y2="385" stroke="#999" stroke-width="1"/>
+      <line x1="350" y1="385" x2="600" y2="385" stroke="#999" stroke-width="1"/>
+      <text x="330" y="310" fill="#666" font-size="11" transform="rotate(-90,330,310)">P</text>
+      <text x="470" y="405" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- Single line (both same) -->
+      <line x1="375" y1="365" x2="570" y2="265" stroke="#9c27b0" stroke-width="2.5"/>
+      <text x="520" y="275" fill="#9c27b0" font-size="10" font-weight="bold">S_SR = S_LR</text>
+      <text x="470" y="420" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">D</text>
+    </g>
   </svg>`;
 
-  // Q4 - TU/MU
+  // Q4 - TU/MU relationship (4 options A, B, C, D in 2x2 grid)
   const g4 = document.getElementById('graph-4');
-  if (g4) g4.innerHTML = `<svg viewBox="0 0 320 220" style="width:100%;max-width:360px;display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-    <rect width="320" height="220" fill="#fafafa" rx="8"/>
-    <line x1="40" y1="15" x2="40" y2="195" stroke="#999" stroke-width="1.5"/>
-    <line x1="40" y1="195" x2="300" y2="195" stroke="#999" stroke-width="1.5"/>
-    <text x="18" y="110" fill="#666" font-size="13" transform="rotate(-90,18,110)">U</text>
-    <text x="280" y="213" fill="#666" font-size="13">Q</text>
-    <path d="M 50 175 Q 100 100, 150 40 Q 180 25, 200 40 Q 230 60, 265 90" stroke="#1565c0" stroke-width="2.5" fill="none"/>
-    <text x="267" y="86" fill="#1565c0" font-size="11" font-weight="bold">TU</text>
-    <path d="M 50 80 Q 100 120, 150 155 Q 180 175, 200 195 Q 220 205, 265 215" stroke="#f57c00" stroke-width="2.5" fill="none"/>
-    <text x="267" y="212" fill="#f57c00" font-size="11" font-weight="bold">MU</text>
-    <line x1="185" y1="18" x2="185" y2="195" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
-    <text x="170" y="212" fill="#999" font-size="9">MU=0</text>
+  if (g4) g4.innerHTML = `<svg viewBox="0 0 620 420" style="width:100%;max-width:620px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <!-- Graph A: MU rises above TU -->
+    <g id="graphA">
+      <rect x="10" y="10" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="40" y1="25" x2="40" y2="175" stroke="#999" stroke-width="1"/>
+      <line x1="40" y1="175" x2="290" y2="175" stroke="#999" stroke-width="1"/>
+      <text x="20" y="100" fill="#666" font-size="11" transform="rotate(-90,20,100)">U</text>
+      <text x="160" y="195" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- MU hump (orange) -->
+      <path d="M 50 135 Q 100 50, 150 60 Q 180 80, 280 120" stroke="#f57c00" stroke-width="2.5" fill="none"/>
+      <text x="260" y="115" fill="#f57c00" font-size="10" font-weight="bold">MU</text>
+      <!-- TU line (blue) -->
+      <line x1="50" y1="165" x2="280" y2="95" stroke="#1565c0" stroke-width="2"/>
+      <text x="265" y="90" fill="#1565c0" font-size="10" font-weight="bold">TU</text>
+      <text x="160" y="210" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">A</text>
+    </g>
+
+    <!-- Graph B: TU = MU (same line) -->
+    <g id="graphB">
+      <rect x="320" y="10" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="350" y1="25" x2="350" y2="175" stroke="#999" stroke-width="1"/>
+      <line x1="350" y1="175" x2="600" y2="175" stroke="#999" stroke-width="1"/>
+      <text x="330" y="100" fill="#666" font-size="11" transform="rotate(-90,330,100)">U</text>
+      <text x="470" y="195" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- Single line labeled TU=MU -->
+      <line x1="365" y1="165" x2="580" y2="45" stroke="#9c27b0" stroke-width="2.5"/>
+      <text x="520" y="90" fill="#9c27b0" font-size="10" font-weight="bold">TU = MU</text>
+      <text x="470" y="210" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">B</text>
+    </g>
+
+    <!-- Graph C (CORRECT): TU hump, MU crosses zero at peak -->
+    <g id="graphC">
+      <rect x="10" y="220" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="40" y1="235" x2="40" y2="385" stroke="#999" stroke-width="1"/>
+      <line x1="40" y1="235" x2="290" y2="235" stroke="#999" stroke-width="1"/>
+      <line x1="40" y1="385" x2="290" y2="385" stroke="#999" stroke-width="1"/>
+      <text x="20" y="310" fill="#666" font-size="11" transform="rotate(-90,20,310)">U</text>
+      <text x="160" y="405" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- TU hump (blue) -->
+      <path d="M 50 370 Q 100 310, 150 280 Q 180 250, 220 280 Q 250 310, 280 350" stroke="#1565c0" stroke-width="2.5" fill="none"/>
+      <text x="225" y="270" fill="#1565c0" font-size="10" font-weight="bold">TU</text>
+      <!-- MU curve crossing zero (orange) -->
+      <path d="M 50 310 Q 100 290, 150 235 Q 180 220, 220 240 Q 250 300, 280 360" stroke="#f57c00" stroke-width="2.5" fill="none"/>
+      <text x="265" y="355" fill="#f57c00" font-size="10" font-weight="bold">MU</text>
+      <!-- Zero line and dashed vertical at peak -->
+      <line x1="40" y1="340" x2="290" y2="340" stroke="#ccc" stroke-width="1"/>
+      <line x1="150" y1="235" x2="150" y2="385" stroke="#999" stroke-width="1" stroke-dasharray="3"/>
+      <text x="155" y="398" fill="#999" font-size="9">TU peak</text>
+      <text x="160" y="420" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">C (CORRECT)</text>
+    </g>
+
+    <!-- Graph D: TU S-curve, MU downward crossing zero -->
+    <g id="graphD">
+      <rect x="320" y="220" width="290" height="190" fill="#fafafa" stroke="#ddd" stroke-width="1" rx="4"/>
+      <line x1="350" y1="235" x2="350" y2="385" stroke="#999" stroke-width="1"/>
+      <line x1="350" y1="235" x2="600" y2="235" stroke="#999" stroke-width="1"/>
+      <line x1="350" y1="385" x2="600" y2="385" stroke="#999" stroke-width="1"/>
+      <text x="330" y="310" fill="#666" font-size="11" transform="rotate(-90,330,310)">U</text>
+      <text x="470" y="405" fill="#666" font-size="11" text-anchor="middle">Q</text>
+      <!-- TU S-curve (blue) -->
+      <path d="M 365 360 Q 400 320, 450 280 Q 500 260, 570 250" stroke="#1565c0" stroke-width="2.5" fill="none"/>
+      <text x="525" y="265" fill="#1565c0" font-size="10" font-weight="bold">TU</text>
+      <!-- MU declining (orange) -->
+      <path d="M 365 300 Q 430 290, 500 310 Q 550 350, 580 380" stroke="#f57c00" stroke-width="2.5" fill="none"/>
+      <text x="540" y="375" fill="#f57c00" font-size="10" font-weight="bold">MU</text>
+      <!-- Zero line and dashed vertical -->
+      <line x1="350" y1="310" x2="600" y2="310" stroke="#ccc" stroke-width="1"/>
+      <line x1="480" y1="235" x2="480" y2="385" stroke="#999" stroke-width="1" stroke-dasharray="3"/>
+      <text x="160" y="420" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">D</text>
+    </g>
   </svg>`;
 
-  // Q16 - Inelastic
+  // Q11 - Trade/Gains from Trade
+  const g11 = document.getElementById('graph-11');
+  if (g11) g11.innerHTML = `<svg viewBox="0 0 380 280" style="width:100%;max-width:380px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="380" height="280" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="50" y1="30" x2="50" y2="230" stroke="#000" stroke-width="1.5"/>
+    <line x1="50" y1="230" x2="340" y2="230" stroke="#000" stroke-width="1.5"/>
+    <text x="25" y="130" fill="#333" font-size="12" transform="rotate(-90,25,130)">Price</text>
+    <text x="190" y="260" fill="#333" font-size="12" text-anchor="middle">Quantity</text>
+
+    <!-- Demand line (blue, downward sloping) -->
+    <line x1="60" y1="50" x2="330" y2="210" stroke="#1565c0" stroke-width="2.5"/>
+    <text x="335" y="210" fill="#1565c0" font-size="11" font-weight="bold">D</text>
+
+    <!-- Supply line (red, upward sloping) -->
+    <line x1="60" y1="200" x2="330" y2="60" stroke="#e53935" stroke-width="2.5"/>
+    <text x="335" y="60" fill="#e53935" font-size="11" font-weight="bold">S</text>
+
+    <!-- World price line (green, horizontal) -->
+    <line x1="50" y1="150" x2="340" y2="150" stroke="#43a047" stroke-width="2.5"/>
+    <text x="345" y="155" fill="#43a047" font-size="11" font-weight="bold">P_world</text>
+
+    <!-- Equilibrium point (intersection of D and S) -->
+    <circle cx="195" cy="130" r="3" fill="#000"/>
+
+    <!-- Labeled areas -->
+    <text x="110" y="80" fill="#f57c00" font-size="13" font-weight="bold">A</text>
+    <text x="150" y="70" fill="#f57c00" font-size="13" font-weight="bold">B</text>
+    <text x="120" y="120" fill="#f57c00" font-size="13" font-weight="bold">C</text>
+    <text x="170" y="115" fill="#f57c00" font-size="13" font-weight="bold">D</text>
+    <text x="240" y="160" fill="#f57c00" font-size="13" font-weight="bold">E</text>
+    <text x="280" y="185" fill="#f57c00" font-size="13" font-weight="bold">F</text>
+  </svg>`;
+
+  // Q16 - Demand Elasticity Curves (4 numbered curves)
   const g16 = document.getElementById('graph-16');
-  if (g16) g16.innerHTML = `<svg viewBox="0 0 300 220" style="width:100%;max-width:340px;display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-    <rect width="300" height="220" fill="#fafafa" rx="8"/>
-    <line x1="40" y1="15" x2="40" y2="195" stroke="#999" stroke-width="1.5"/>
-    <line x1="40" y1="195" x2="280" y2="195" stroke="#999" stroke-width="1.5"/>
-    <text x="18" y="110" fill="#999" font-size="13" transform="rotate(-90,18,110)">P</text>
-    <text x="265" y="213" fill="#999" font-size="13">Q</text>
-    <line x1="120" y1="25" x2="120" y2="185" stroke="#43a047" stroke-width="3"/>
-    <text x="125" y="22" fill="#43a047" font-size="12" font-weight="bold">1 (vertical)</text>
-    <line x1="80" y1="170" x2="250" y2="35" stroke="#e53935" stroke-width="1.5" stroke-dasharray="5"/>
-    <text x="252" y="33" fill="#e53935" font-size="10">2</text>
-    <line x1="50" y1="110" x2="270" y2="110" stroke="#f57c00" stroke-width="1.5" stroke-dasharray="5"/>
-    <text x="272" y="108" fill="#f57c00" font-size="10">3</text>
-    <line x1="60" y1="35" x2="260" y2="175" stroke="#7b1fa2" stroke-width="1.5" stroke-dasharray="5"/>
-    <text x="262" y="180" fill="#7b1fa2" font-size="10">4</text>
+  if (g16) g16.innerHTML = `<svg viewBox="0 0 380 300" style="width:100%;max-width:380px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="380" height="300" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="50" y1="30" x2="50" y2="240" stroke="#000" stroke-width="1.5"/>
+    <line x1="50" y1="240" x2="340" y2="240" stroke="#000" stroke-width="1.5"/>
+    <text x="25" y="135" fill="#333" font-size="12" transform="rotate(-90,25,135)">P (0-30)</text>
+    <text x="190" y="270" fill="#333" font-size="12" text-anchor="middle">Q (0-30)</text>
+
+    <!-- Grid/scale marks -->
+    <text x="40" y="245" fill="#999" font-size="10">0</text>
+    <text x="320" y="245" fill="#999" font-size="10">30</text>
+    <text x="45" y="35" fill="#999" font-size="10">30</text>
+
+    <!-- Curve 1 (CORRECT): VERTICAL line (perfectly inelastic) -->
+    <line x1="150" y1="30" x2="150" y2="240" stroke="#43a047" stroke-width="3"/>
+    <text x="145" y="260" fill="#43a047" font-size="13" font-weight="bold">1</text>
+
+    <!-- Curve 2: UPWARD sloping -->
+    <line x1="75" y1="210" x2="310" y2="50" stroke="#e53935" stroke-width="2.5" stroke-dasharray="4"/>
+    <text x="315" y="50" fill="#e53935" font-size="13" font-weight="bold">2</text>
+
+    <!-- Curve 3: HORIZONTAL line (perfectly elastic) -->
+    <line x1="60" y1="120" x2="330" y2="120" stroke="#f57c00" stroke-width="3"/>
+    <text x="335" y="125" fill="#f57c00" font-size="13" font-weight="bold">3</text>
+
+    <!-- Curve 4: DOWNWARD sloping (standard demand) -->
+    <line x1="60" y1="60" x2="330" y2="230" stroke="#7b1fa2" stroke-width="2.5"/>
+    <text x="335" y="230" fill="#7b1fa2" font-size="13" font-weight="bold">4</text>
   </svg>`;
 
-  // Q22 - Total Revenue
+  // Q22 - Total Revenue with labeled points A-H
   const g22 = document.getElementById('graph-22');
-  if (g22) {
-    g22.innerHTML = '<canvas id="trChart"></canvas>';
-    new Chart(document.getElementById('trChart'), {
-      type:'line',
-      data:{
-        labels:['0','2','4','6','8','10','12','14','16','17'],
-        datasets:[{
-          label:'Total Revenue ($thousands)',
-          data:[0,2,4.2,6.5,8.5,10,9,6,3.5,2],
-          borderColor:'#ad1457', backgroundColor:'rgba(173,20,87,0.08)',
-          fill:true, tension:0.4, pointRadius:4,
-          pointBackgroundColor: ctx => [7,8,9].includes(ctx.dataIndex) ? '#ef5350' : '#ad1457'
-        }]
-      },
-      options:{
-        responsive:true,
-        plugins:{ legend:{labels:{color:'#666'}}, title:{display:true,text:'Total Revenue Curve',color:'#37474f'} },
-        scales:{
-          x:{title:{display:true,text:'Quantity (thousands)',color:'#999'},ticks:{color:'#999'},grid:{color:'#f0e0e6'}},
-          y:{title:{display:true,text:'TR ($thousands)',color:'#999'},ticks:{color:'#999'},grid:{color:'#f0e0e6'}}
-        }
-      }
-    });
-  }
+  if (g22) g22.innerHTML = `<svg viewBox="0 0 480 300" style="width:100%;max-width:480px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="480" height="300" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="60" y1="40" x2="60" y2="240" stroke="#000" stroke-width="1.5"/>
+    <line x1="60" y1="240" x2="450" y2="240" stroke="#000" stroke-width="1.5"/>
+    <text x="25" y="140" fill="#333" font-size="12" transform="rotate(-90,25,140)">Total Revenue ($thousands)</text>
+    <text x="255" y="275" fill="#333" font-size="12" text-anchor="middle">Quantity (thousands)</text>
 
-  // Q30 - ATC curves
-  const g30 = document.getElementById('graph-30');
-  if (g30) g30.innerHTML = `<svg viewBox="0 0 340 200" style="width:100%;max-width:380px;display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-    <rect width="340" height="200" fill="#fafafa" rx="8"/>
-    <line x1="40" y1="15" x2="40" y2="175" stroke="#999" stroke-width="1.5"/>
-    <line x1="40" y1="175" x2="320" y2="175" stroke="#999" stroke-width="1.5"/>
-    <text x="18" y="100" fill="#999" font-size="12" transform="rotate(-90,18,100)">Cost</text>
-    <text x="170" y="197" fill="#999" font-size="12" text-anchor="middle">Quantity</text>
-    <path d="M 55 85 Q 75 40, 95 55 Q 115 75, 135 100" stroke="#43a047" stroke-width="2.5" fill="none"/>
-    <text x="80" y="33" fill="#43a047" font-size="11" font-weight="bold">ATC1 (small)</text>
-    <path d="M 115 85 Q 145 40, 175 55 Q 200 70, 220 95" stroke="#1565c0" stroke-width="2" fill="none"/>
-    <text x="150" y="33" fill="#1565c0" font-size="10">ATC2</text>
-    <path d="M 185 80 Q 215 40, 250 55 Q 270 65, 290 85" stroke="#f57c00" stroke-width="2" fill="none"/>
-    <text x="220" y="33" fill="#f57c00" font-size="10">ATC3</text>
-    <path d="M 250 75 Q 280 40, 310 60" stroke="#e53935" stroke-width="2" fill="none"/>
-    <text x="278" y="33" fill="#e53935" font-size="10">ATC4</text>
+    <!-- Y-axis scale: 0-10 in $thousands -->
+    <line x1="55" y1="240" x2="60" y2="240" stroke="#000" stroke-width="1"/>
+    <text x="40" y="245" fill="#666" font-size="10">0</text>
+    <line x1="55" y1="40" x2="60" y2="40" stroke="#000" stroke-width="1"/>
+    <text x="40" y="45" fill="#666" font-size="10">10</text>
+
+    <!-- X-axis scale: 0-17 -->
+    <line x1="60" y1="240" x2="60" y2="245" stroke="#000" stroke-width="1"/>
+    <text x="55" y="260" fill="#666" font-size="10">0</text>
+    <line x1="450" y1="240" x2="450" y2="245" stroke="#000" stroke-width="1"/>
+    <text x="440" y="260" fill="#666" font-size="10">17</text>
+
+    <!-- Grid lines -->
+    <line x1="60" y1="140" x2="450" y2="140" stroke="#eee" stroke-width="0.5"/>
+    <line x1="60" y1="40" x2="450" y2="40" stroke="#eee" stroke-width="0.5"/>
+
+    <!-- TR curve (inverted U / hump shape) -->
+    <!-- Points: A(1,2), B(2,4), C(4,6), D(6,8), E(8,9.5), F(10,6), G(14,4), H(17,2) -->
+    <!-- Convert to SVG coords: x=60 + (q/17)*390, y=240 - (tr/10)*200 -->
+    <path d="M 83 200 L 106 160 L 152 80 L 198 80 L 245 30 L 292 80 L 385 160 L 449 200" stroke="#ad1457" stroke-width="2.5" fill="none"/>
+
+    <!-- Points and labels -->
+    <!-- A (1, 2) -->
+    <circle cx="83" cy="200" r="3" fill="#ad1457"/>
+    <text x="75" y="215" fill="#ad1457" font-size="12" font-weight="bold">A</text>
+    <line x1="83" y1="240" x2="83" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="200" x2="83" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- B (2, 4) -->
+    <circle cx="106" cy="160" r="3" fill="#ad1457"/>
+    <text x="98" y="175" fill="#ad1457" font-size="12" font-weight="bold">B</text>
+    <line x1="106" y1="240" x2="106" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="160" x2="106" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- C (4, 6) -->
+    <circle cx="152" cy="80" r="3" fill="#ad1457"/>
+    <text x="144" y="95" fill="#ad1457" font-size="12" font-weight="bold">C</text>
+    <line x1="152" y1="240" x2="152" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="80" x2="152" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- D (6, 8) -->
+    <circle cx="198" cy="80" r="3" fill="#ad1457"/>
+    <text x="190" y="95" fill="#ad1457" font-size="12" font-weight="bold">D</text>
+    <line x1="198" y1="240" x2="198" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="80" x2="198" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- E (8, 9.5) - near peak -->
+    <circle cx="245" cy="30" r="3" fill="#ad1457"/>
+    <text x="237" y="20" fill="#ad1457" font-size="12" font-weight="bold">E</text>
+    <line x1="245" y1="240" x2="245" y2="30" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="30" x2="245" y2="30" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- F (10, 6) -->
+    <circle cx="292" cy="80" r="3" fill="#ad1457"/>
+    <text x="284" y="95" fill="#ad1457" font-size="12" font-weight="bold">F</text>
+    <line x1="292" y1="240" x2="292" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="80" x2="292" y2="80" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- G (14, 4) -->
+    <circle cx="385" cy="160" r="3" fill="#ad1457"/>
+    <text x="377" y="175" fill="#ad1457" font-size="12" font-weight="bold">G</text>
+    <line x1="385" y1="240" x2="385" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="160" x2="385" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+
+    <!-- H (17, 2) -->
+    <circle cx="449" cy="200" r="3" fill="#ad1457"/>
+    <text x="441" y="215" fill="#ad1457" font-size="12" font-weight="bold">H</text>
+    <line x1="449" y1="240" x2="449" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
+    <line x1="60" y1="200" x2="449" y2="200" stroke="#ddd" stroke-width="0.5" stroke-dasharray="2"/>
   </svg>`;
 
-  // Q33 - Cost curves
+  // Q30 - ATC curves (4 industries, left to right, all U-shaped)
+  const g30 = document.getElementById('graph-30');
+  if (g30) g30.innerHTML = `<svg viewBox="0 0 420 240" style="width:100%;max-width:420px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="420" height="240" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="50" y1="30" x2="50" y2="180" stroke="#000" stroke-width="1.5"/>
+    <line x1="50" y1="180" x2="400" y2="180" stroke="#000" stroke-width="1.5"/>
+    <text x="25" y="105" fill="#333" font-size="12" transform="rotate(-90,25,105)">Cost</text>
+    <text x="225" y="210" fill="#333" font-size="12" text-anchor="middle">Quantity of Widgets</text>
+
+    <!-- ATC1 - smallest, leftmost, minimum at smallest Q -->
+    <path d="M 65 120 Q 80 65, 95 75 Q 110 90, 125 110" stroke="#43a047" stroke-width="2.5" fill="none"/>
+    <text x="85" y="55" fill="#43a047" font-size="11" font-weight="bold">ATC1</text>
+
+    <!-- ATC2 - next, slightly larger -->
+    <path d="M 130 125 Q 155 70, 180 80 Q 200 95, 220 115" stroke="#1565c0" stroke-width="2.5" fill="none"/>
+    <text x="160" y="55" fill="#1565c0" font-size="11" font-weight="bold">ATC2</text>
+
+    <!-- ATC3 - larger still -->
+    <path d="M 210 135 Q 240 75, 270 85 Q 290 100, 310 125" stroke="#f57c00" stroke-width="2.5" fill="none"/>
+    <text x="250" y="55" fill="#f57c00" font-size="11" font-weight="bold">ATC3</text>
+
+    <!-- ATC4 - largest, rightmost (minimum at largest Q) -->
+    <path d="M 300 145 Q 335 80, 370 95 Q 385 110, 395 135" stroke="#e53935" stroke-width="2.5" fill="none"/>
+    <text x="340" y="55" fill="#e53935" font-size="11" font-weight="bold">ATC4</text>
+  </svg>`;
+
+  // Q33 - MC/ATC/AVC Cost Curves with labeled points A-F
   const g33 = document.getElementById('graph-33');
-  if (g33) g33.innerHTML = `<svg viewBox="0 0 320 240" style="width:100%;max-width:370px;display:block;margin:auto;" xmlns="http://www.w3.org/2000/svg">
-    <rect width="320" height="240" fill="#fafafa" rx="8"/>
-    <line x1="50" y1="15" x2="50" y2="210" stroke="#999" stroke-width="1.5"/>
-    <line x1="50" y1="210" x2="300" y2="210" stroke="#999" stroke-width="1.5"/>
-    <text x="22" y="115" fill="#999" font-size="12" transform="rotate(-90,22,115)">Price</text>
-    <text x="170" y="235" fill="#999" font-size="12" text-anchor="middle">Quantity</text>
-    <path d="M 70 170 Q 100 185, 130 160 Q 155 110, 185 55 Q 205 30, 240 15" stroke="#e53935" stroke-width="2" fill="none"/>
-    <text x="242" y="15" fill="#e53935" font-size="10">MC</text>
-    <path d="M 80 90 Q 120 52, 160 48 Q 200 52, 250 72" stroke="#1565c0" stroke-width="2" fill="none"/>
-    <text x="252" y="70" fill="#1565c0" font-size="10">ATC</text>
-    <path d="M 80 150 Q 120 100, 160 88 Q 200 92, 250 120" stroke="#43a047" stroke-width="2" fill="none"/>
-    <text x="252" y="118" fill="#43a047" font-size="10">AVC</text>
-    <text x="32" y="42" fill="#f57c00" font-size="11">A</text>
-    <line x1="50" y1="45" x2="160" y2="45" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
-    <text x="32" y="90" fill="#f57c00" font-size="11">B</text>
-    <line x1="50" y1="92" x2="160" y2="92" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
-    <text x="32" y="155" fill="#f57c00" font-size="11">C</text>
-    <line x1="50" y1="157" x2="160" y2="157" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
-    <text x="155" y="42" fill="#f57c00" font-size="10">D</text>
-    <text x="155" y="88" fill="#f57c00" font-size="10">E</text>
-    <text x="155" y="155" fill="#f57c00" font-size="10">F</text>
-    <line x1="160" y1="210" x2="160" y2="40" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
-    <text x="155" y="225" fill="#999" font-size="10">Q1</text>
-    <rect x="50" y="92" width="110" height="118" fill="rgba(173,20,87,0.08)" stroke="none"/>
-    <text x="85" y="155" fill="#ad1457" font-size="10" font-weight="bold">0BEQ1 = TVC</text>
+  if (g33) g33.innerHTML = `<svg viewBox="0 0 380 280" style="width:100%;max-width:380px;display:block;margin:auto;" class="svg-graph" xmlns="http://www.w3.org/2000/svg">
+    <rect width="380" height="280" fill="#fafafa" rx="8"/>
+    <!-- Axes -->
+    <line x1="60" y1="30" x2="60" y2="230" stroke="#000" stroke-width="1.5"/>
+    <line x1="60" y1="230" x2="360" y2="230" stroke="#000" stroke-width="1.5"/>
+    <text x="30" y="130" fill="#333" font-size="12" transform="rotate(-90,30,130)">Price</text>
+    <text x="210" y="265" fill="#333" font-size="12" text-anchor="middle">Quantity</text>
+
+    <!-- MC curve - steep U, crosses ATC and AVC from below (red) -->
+    <path d="M 75 200 Q 105 215, 140 180 Q 165 130, 190 70 Q 210 40, 250 25" stroke="#e53935" stroke-width="2.5" fill="none"/>
+    <text x="255" y="25" fill="#e53935" font-size="11" font-weight="bold">MC</text>
+
+    <!-- ATC curve - U-shape, above AVC (blue) -->
+    <path d="M 80 110 Q 130 65, 180 60 Q 230 65, 290 95" stroke="#1565c0" stroke-width="2.5" fill="none"/>
+    <text x="295" y="93" fill="#1565c0" font-size="11" font-weight="bold">ATC</text>
+
+    <!-- AVC curve - U-shape, below ATC (green) -->
+    <path d="M 80 170 Q 130 115, 180 100 Q 230 110, 290 155" stroke="#43a047" stroke-width="2.5" fill="none"/>
+    <text x="295" y="153" fill="#43a047" font-size="11" font-weight="bold">AVC</text>
+
+    <!-- Point A on price axis at ATC level at Q1 -->
+    <text x="55" y="65" fill="#f57c00" font-size="12" font-weight="bold">A</text>
+    <line x1="60" y1="65" x2="180" y2="65" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
+
+    <!-- Point B on price axis at AVC level at Q1 -->
+    <text x="55" y="115" fill="#f57c00" font-size="12" font-weight="bold">B</text>
+    <line x1="60" y1="115" x2="180" y2="115" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
+
+    <!-- Point C on price axis below B -->
+    <text x="55" y="160" fill="#f57c00" font-size="12" font-weight="bold">C</text>
+    <line x1="60" y1="160" x2="180" y2="160" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3"/>
+
+    <!-- Point D: where MC crosses ATC (at ATC minimum) -->
+    <circle cx="180" cy="60" r="2.5" fill="#f57c00"/>
+    <text x="175" y="50" fill="#f57c00" font-size="12" font-weight="bold">D</text>
+
+    <!-- Point E: where MC crosses vertical line at Q1 (above D) -->
+    <circle cx="180" cy="180" r="2.5" fill="#f57c00"/>
+    <text x="175" y="195" fill="#f57c00" font-size="12" font-weight="bold">E</text>
+
+    <!-- Point F: where AVC meets Q1 vertical line -->
+    <circle cx="180" cy="100" r="2.5" fill="#f57c00"/>
+    <text x="175" y="90" fill="#f57c00" font-size="12" font-weight="bold">F</text>
+
+    <!-- Vertical dashed line at Q1 -->
+    <line x1="180" y1="230" x2="180" y2="25" stroke="#999" stroke-width="1" stroke-dasharray="3"/>
+    <text x="173" y="250" fill="#999" font-size="11" font-weight="bold">Q1</text>
+
+    <!-- TVC area shading (rectangle from origin to Q1, B level) -->
+    <rect x="60" y="115" width="120" height="115" fill="rgba(173,20,87,0.08)" stroke="none"/>
+    <text x="95" y="175" fill="#ad1457" font-size="9" font-weight="bold">TVC = 0BEQ1</text>
   </svg>`;
 }
 
